@@ -1,20 +1,25 @@
-package sectionD
+package sectionE
 
-interface Shape {
-    fun area(): Double
+abstract class Shape {
+    abstract fun area(): Double
 }
 
-class Circle(private val radius: Double) : Shape {
+class Circle(private val radius: Double) : Shape() {
     override fun area() = Math.PI * radius * radius
 }
 
-class Rect(private val length: Double, private val breadth: Double) : Shape {
-    override fun area() = length * breadth
+class Rectangle(private val length: Double, private val width: Double) : Shape() {
+    override fun area() = length * width
 }
 
 fun main() {
-    val circle = Circle(5.0)
-    val rect = Rect(10.0, 4.0)
-    println("Circle Area: ${"%.2f".format(circle.area())}")
-    println("Rectangle Area: ${rect.area()}")
+    val shapes: List<Shape> = listOf(
+        Circle(7.0),
+        Rectangle(10.0, 5.0),
+        Circle(3.5)
+    )
+
+    shapes.forEach { shape ->
+        println("Area: ${"%.2f".format(shape.area())}")
+    }
 }
